@@ -1,8 +1,10 @@
 
 using UnityEngine;
 using System.Collections;
+using TMPro;
 
-/*namespace MyDefence
+/*놓침1
+namespace MyDefence
 {
     public class WaveSpawnManager : MonoBehaviour
     {
@@ -34,7 +36,8 @@ using System.Collections;
     }
 }*/
 
-/*namespace MyDefence
+/* 놓처서 ai 쓰는데 뭔가 꼬인듯?
+namespace MyDefence
 {
     /// <summary>
     /// 적 스폰 및 웨이브를 관리하는 클래스 
@@ -114,11 +117,16 @@ namespace MyDefence
     public class WaveSpawnManager : MonoBehaviour
     {
         #region Variables
-        public GameObject enemyPrefab;      // 적 프리팹
-        public float spawnInterval = 0.5f;  // 웨이브 내 적 생성 간격
-        public float waveInterval = 5f;     // 웨이브 간 간격
+        public GameObject enemyPrefab;                  // 적 프리팹
+        public float spawnInterval = 0.5f;              // 웨이브 내 적 생성 간격
+        public float waveInterval = 5f;                 // 웨이브 간 간격
 
-        private int waveCount = 0;          // 웨이브 카운트
+        private int waveCount = 0;                      // 웨이브 카운트
+        public int maxWaves = 5;                        // 최대 웨이브 수 (추가)
+        public TextMeshProUGUI countdownText;           // UI - Text
+
+        public Tower[] towers;                          // 씬의 모든 타워를 연결
+        public float preWaveCountdown = 5f;             // ★추가★ 웨이브 시작 전 카운트다운
         #endregion
 
         #region Unity Event
@@ -132,10 +140,22 @@ namespace MyDefence
         #region Custom Methods
         private IEnumerator SpawnWaves()
         {
-            while (true)
+            while (waveCount < maxWaves) // 최대 웨이브까지만 반복
             {
                 waveCount++; // 웨이브 증가
                 Debug.Log($"웨이브 {waveCount} 시작!");
+
+                // ★추가★: 웨이브 시작 전 5→1 카운트다운
+                float countdown = preWaveCountdown;
+                while (countdown > 0f)
+                {
+                    if (countdownText != null)
+                        countdownText.text = Mathf.Ceil(countdown).ToString();
+                    countdown -= Time.deltaTime;
+                    yield return null;
+                }
+                if (countdownText != null)
+                    countdownText.text = "0";
 
                 for (int i = 0; i < waveCount; i++)
                 {
@@ -145,7 +165,13 @@ namespace MyDefence
 
                 yield return new WaitForSeconds(waveInterval); // 다음 웨이브까지 대기
             }
+
+            Debug.Log("모든 웨이브 종료!");
+            OnAllWavesFinished();
         }
+
+        public float spawnTimer = 5f;       // 스폰 주기 (초)  
+        private float countdown = 0f;       // 경과 시간        
 
         private void SpawnEnemy()
         {
@@ -158,6 +184,14 @@ namespace MyDefence
             }
 
             Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
+        }
+
+        private void OnAllWavesFinished()
+        {
+            // 모든 웨이브 끝났을 때 처리
+            Debug.Log("게임 클리어! 다음 로직 실행");
+            // 예: UI 띄우기, 씬 전환 등
+            // SceneManager.LoadScene("ClearScene");
         }
         #endregion
     }
