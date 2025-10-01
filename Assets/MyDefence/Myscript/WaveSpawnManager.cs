@@ -126,7 +126,7 @@ namespace MyDefence
         public TextMeshProUGUI countdownText;           // UI - Text
 
         public Tower[] towers;                          // 씬의 모든 타워를 연결
-        public float preWaveCountdown = 5f;             // ★추가★ 웨이브 시작 전 카운트다운
+        public float preWaveCountdown = 5f;             // 웨이브 시작 후 화면에 표시될 5→1 카운트다운 시간
         #endregion
 
         #region Unity Event
@@ -145,30 +145,39 @@ namespace MyDefence
                 waveCount++; // 웨이브 증가
                 Debug.Log($"웨이브 {waveCount} 시작!");
 
-                // ★추가★: 웨이브 시작 전 5→1 카운트다운
-                float countdown = preWaveCountdown;
-                while (countdown > 0f)
-                {
-                    if (countdownText != null)
-                        countdownText.text = Mathf.Ceil(countdown).ToString();
-                    countdown -= Time.deltaTime;
-                    yield return null;
-                }
-                if (countdownText != null)
-                    countdownText.text = "0";
-
+                // ★ 추가: 웨이브 시작과 동시에 카운트다운
+                StartCoroutine(WaveCountdown(preWaveCountdown));     // UI 카운트다운               
+          
+                // 적 생성
                 for (int i = 0; i < waveCount; i++)
                 {
                     SpawnEnemy();
-                    yield return new WaitForSeconds(spawnInterval); // 적 생성 간격
+                    yield return new WaitForSeconds(spawnInterval);
                 }
 
-                yield return new WaitForSeconds(waveInterval); // 다음 웨이브까지 대기
+                // 다음 웨이브 대기
+                yield return new WaitForSeconds(waveInterval);
             }
 
             Debug.Log("모든 웨이브 종료!");
             OnAllWavesFinished();
         }
+        // ★ 추가: UI 카운트다운 코루틴
+        private IEnumerator WaveCountdown(float duration)
+        {
+            float countdown = duration;
+            while (countdown > 0f)
+            {
+                if (countdownText != null)
+                    countdownText.text = Mathf.Ceil(countdown).ToString();
+
+                countdown -= Time.deltaTime;
+                yield return null;
+            }
+            if (countdownText != null)
+                countdownText.text = "0";
+        }
+
 
         public float spawnTimer = 5f;       // 스폰 주기 (초)  
         private float countdown = 0f;       // 경과 시간        

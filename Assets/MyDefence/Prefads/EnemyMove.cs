@@ -139,7 +139,7 @@ namespace MyDefence
         // 적이 마지막 웨이포인트에 도착했을 때 호출
         private void Arrive()
         {
-            Debug.Log("적이 종점 도착!");
+            //Debug.Log("적이 종점 도착!");
 
             // 적 제거
             Destroy(gameObject);
