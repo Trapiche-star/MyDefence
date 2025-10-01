@@ -17,17 +17,11 @@ namespace Sample
         }
         #endregion
 
+        #region Custom Method
         public int GetB()
         {
             return b;
         }
-
-
-        #region
-        public int c { get; set; } = 50; // ★ 추가: 자동 프로퍼티, 기본값 50
-
         #endregion
-
     }
-
 }

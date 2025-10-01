@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 28
-  productGUID: 063c9584ea4412242aefa17fce55e6ba
+  productGUID: aa7497bfa0d4de443af7956c1b5adf3b
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -919,11 +919,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: f5f96d44-6e34-4f64-9b96-a710267fc430
+  cloudProjectId: ed76fba9-cf22-4adf-a46d-3928f544eede
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: MyDefence2
-  organizationId: garveflower4
+  organizationId: hj-lee
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
