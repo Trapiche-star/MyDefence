@@ -122,4 +122,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverColor: {r: 0.59845585, g: 0.9811321, b: 0.30081883, a: 1}
+  hoverMaterial: {fileID: 2100000, guid: 8a8901c068d163f4da9509b7c4821cfa, type: 2}
   towerPrefad: {fileID: 61394159346991239, guid: b072259161b318d46b9a7bb8983b47ae, type: 3}
