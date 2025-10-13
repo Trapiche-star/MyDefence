@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 3147285809000828065}
   - component: {fileID: 4312983264303080729}
   m_Layer: 10
-  m_Name: MachineGunTower
+  m_Name: AnothoerTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

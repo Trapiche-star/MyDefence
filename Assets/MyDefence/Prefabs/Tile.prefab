@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4321125250515200279}
   - component: {fileID: 1908182455415206259}
   - component: {fileID: 5445515858123859686}
-  - component: {fileID: 141987163928744882}
+  - component: {fileID: 4166723314636872810}
   m_Layer: 0
   m_Name: Tile
   m_TagString: Untagged
@@ -109,7 +109,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &141987163928744882
+--- !u!114 &4166723314636872810
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,9 +118,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4984132133177576809}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f2e86c34e3d7f345a71e7ba8bb6477d, type: 3}
+  m_Script: {fileID: 11500000, guid: 99d4c3f6169d509428b37cae82b8670e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverColor: {r: 0.59845585, g: 0.9811321, b: 0.30081883, a: 1}
-  hoverMaterial: {fileID: 2100000, guid: 8a8901c068d163f4da9509b7c4821cfa, type: 2}
-  towerPrefad: {fileID: 61394159346991239, guid: b072259161b318d46b9a7bb8983b47ae, type: 3}
+  hoverColor: {r: 0.58018863, g: 1, b: 0.16037732, a: 1}
+  hoverMaterial: {fileID: 2100000, guid: 558b753725529da43ad9efd1bcabbd02, type: 2}
+  towerPrefab: {fileID: 2492382370837883844, guid: d5a7d238f690f1748a892d8d2263f64d, type: 3}

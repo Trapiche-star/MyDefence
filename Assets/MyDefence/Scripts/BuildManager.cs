@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MuDefence
+namespace MyDefence
 {
     /// <summary>
     /// 타워를 건설을 관리하는 싱글톤 클래스
@@ -20,16 +20,13 @@ namespace MuDefence
 
         private void Awake()
         {
-            if (instance != null)
+            if(instance != null)
             {
                 Destroy(this.gameObject);
                 return;
             }
-
             instance = this;
-
             //DontDestroyOnLoad(this.gameObject);
-            
         }
         #endregion
 
@@ -38,16 +35,15 @@ namespace MuDefence
         //여러개의 타워 프리팹중 선택된 프리팹을 저장하는 변수
         private GameObject turretToBuild;
 
-        public GameObject mechinGunPrefab;
+        public GameObject machineGunPrefab;
         #endregion
 
         #region Unity Event Method
         private void Start()
         {
-            // 임시 초기화
-            turretToBuild = mechinGunPrefab;
+            //초기화 - 임시
+            //turretToBuild = machineGunPrefab;
         }
-
         #endregion
 
         #region CustomMethod
@@ -56,7 +52,10 @@ namespace MuDefence
             return turretToBuild;
         }
 
+        public void SetTurretToBuild(GameObject turret)
+        {
+            turretToBuild = turret;
+        }
         #endregion
     }
-
 }
