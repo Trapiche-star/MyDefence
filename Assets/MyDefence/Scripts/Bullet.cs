@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace MyDefence
 {
+    /// <summary>
+    /// 탄환 발사체를 관리하는 클래스
+    /// </summary>
     public class Bullet : MonoBehaviour
     {
         #region Variables
@@ -13,13 +16,19 @@ namespace MyDefence
 
         //타격 이펙트 프리팹 오브젝트
         public GameObject impactPrefab;
+
+        //공격 데미지
+        [SerializeField]
+        private float attackDamage = 50f;
         #endregion
 
         #region Unity Event Method
         private void Update()
         {
+            //타겟이 킬 되면
             if(target == null)
             {
+                Destroy(gameObject);
                 return;
             }
 
@@ -36,6 +45,9 @@ namespace MyDefence
             }
 
             transform.Translate(dir.normalized * Time.deltaTime * moveSpeed, Space.World);
+
+            //타겟 방향으로 바라보기
+            transform.LookAt(target);
         }
         #endregion
 
@@ -47,17 +59,33 @@ namespace MyDefence
         }
 
         //타겟 명중
-        private void HitTarget()
+        protected virtual void HitTarget()
         {
             //타격위치에 이펙트를 생성(Instiate)한 후 3초뒤에 타격 이펙트 오브젝트 kill
             GameObject effectGo = Instantiate(impactPrefab, this.transform.position, Quaternion.identity);
             Destroy(effectGo, 3f);
 
             //Debug.Log("Hit Enemy!!!");
-            //타겟 킬
-            Destroy(target.gameObject);
+            //타격당한 적에게 데미지 주기
+            Damage(target);
+
             //탄환 킬
             Destroy(this.gameObject);
+        }
+
+        //타격당한 적에게 데미지 주기
+        protected void Damage(Transform _target)
+        {
+            //타겟 킬
+            //Destroy(_target.gameObject);
+
+            // _target에게 attackDamage를 준다
+            Enemy enemy = _target.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(attackDamage);
+            }
+            
         }
         #endregion
     }
