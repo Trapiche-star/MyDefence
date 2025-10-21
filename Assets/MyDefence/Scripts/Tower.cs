@@ -72,7 +72,7 @@ namespace MyDefence
             }
         }
 
-        protected void OnDrawGizmosSelected()
+        private void OnDrawGizmosSelected()
         {
             //타워중심에 attackRange 범위 확인
             Gizmos.color = Color.red;
@@ -129,7 +129,7 @@ namespace MyDefence
         }
 
         //발사
-        protected void Shoot()
+        void Shoot()
         {
             //Debug.Log("발사!!!");
             //총구(Fire Point) 위치에 탄환 객체 생성(Instiate)하기
