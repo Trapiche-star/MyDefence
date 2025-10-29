@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 namespace MyDefence
 {
@@ -35,6 +35,9 @@ namespace MyDefence
         //죽음 보상
         [SerializeField]
         private int rewardMoney = 50;
+
+        //UI
+        public Image hpBarImage;
         #endregion
 
 
@@ -76,6 +79,9 @@ namespace MyDefence
             //생명 사용
             PlayerStats.UseLives(1);
 
+            //살아 있는 적의 수를 줄인다
+            WaveSpawnManager.enemyAlive--;
+
             //Enemy 킬
             Destroy(this.gameObject);
         }
@@ -86,8 +92,11 @@ namespace MyDefence
             health -= damage;
             //Debug.Log($"Enemy Health: {health}");
 
+            //UI
+            hpBarImage.fillAmount = health / startHealth;
+
             //죽음 체크
-            if(health <= 0 && isDeath == false)
+            if (health <= 0 && isDeath == false)
             {
                 health = 0;
                 Die();
@@ -105,6 +114,9 @@ namespace MyDefence
             GameObject effectGo = Instantiate(deathEffectPrefab, this.transform.position, Quaternion.identity);
             Destroy(effectGo, 2f);
 
+            //살아 있는 적의 수를 줄인다
+            WaveSpawnManager.enemyAlive--;
+
             //보상 처리(골드, 경험치, 아이템..)
             PlayerStats.AddMoney(rewardMoney);
 
@@ -116,7 +128,6 @@ namespace MyDefence
         public void Slow(float rate)    //40%
         {
             speed = startSpeed * (1 - rate);       //4 * (1 - 0.4) = 2.4
-            //Debug.Log($"Speed: {speed}");
         }
         #endregion
     }

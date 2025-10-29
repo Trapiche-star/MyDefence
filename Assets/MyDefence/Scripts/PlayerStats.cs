@@ -24,8 +24,6 @@ namespace MyDefence
 
         //웨이브 카운트
         private static int rounds;
-
-        
         #endregion
 
         #region Property
@@ -43,7 +41,7 @@ namespace MyDefence
 
         //웨이브 카운트 속성
         public static int Rounds
-        {
+        { 
             get { return rounds; }
             set { rounds = value; }
         }
