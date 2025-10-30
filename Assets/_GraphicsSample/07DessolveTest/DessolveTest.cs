@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+
 namespace Sample
 {
     public class DessolveTest : MonoBehaviour
@@ -22,11 +23,11 @@ namespace Sample
         }
         #endregion
 
-        #region Custom Method    
+        #region Custom Method
         IEnumerator SpawnEllen()
         {
             renderer.material = dessolveMaterial;
-            renderer.material.SetFloat("_SplitValue", 1f);
+            renderer.material.SetFloat("_SplitValue", 0f);
 
             yield return new WaitForSeconds(0.5f);
 
@@ -39,12 +40,11 @@ namespace Sample
                 renderer.material.SetFloat("_SplitValue", value);
 
                 yield return null;
-
-                renderer.material = originMaterial;
             }
 
+            renderer.material = originMaterial;
         }
         #endregion
-    }
 
+    }
 }

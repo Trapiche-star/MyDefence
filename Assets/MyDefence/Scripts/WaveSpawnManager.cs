@@ -36,9 +36,6 @@ namespace MyDefence
         public GameObject waveCountUI;
 
         public TextMeshProUGUI waveCountText;
-
-        // guswo vmffpdlTlsdml fpqpf
-        public int nowLevel = 1;
         #endregion
 
         #region Unity Event Method
@@ -132,17 +129,12 @@ namespace MyDefence
         {
             //마지막 웨이브가 끝났는지 체크 - 웨이브 스폰 기능 정지
             if (waveCount >= waves.Length)
-            {
-                Debug.Log("Level clear");
+            {   
+                GameManager.IsLevelClear = true;
 
-                //게임 데이터 저장
-                int saveLevel = PlayerPrefs.GetInt("ClearLevel", 0);
-                if (saveLevel < nowLevel)
-                {
-                    PlayerPrefs.SetInt("ClearLevel", nowLevel);
-                    //PlayerPrefs.Save(); // 저장 즉시 반영 추천 AI 추가
-                    Debug.Log($"Save ClearLevel: {nowLevel}");
-                }
+                //UI 제거
+                startButton.SetActive(false);
+                waveCountUI.SetActive(false);
 
                 this.enabled = false;
                 return;
