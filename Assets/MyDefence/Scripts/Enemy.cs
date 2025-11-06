@@ -53,7 +53,7 @@ namespace MyDefence
             speed = startSpeed;
             wayPointIndex = 0;
 
-            //이동 목표지점 설정
+            //이동 목표지점 0번으로 설정
             target = WayPoints.points[wayPointIndex];
         }
 
@@ -83,17 +83,15 @@ namespace MyDefence
         private void SetNextTarget()
         {
             //종점 체크
-            if(wayPointIndex >= WayPoints.points.Length - 1)
+            if(wayPointIndex >= WayPoints.points.Length-1)
             {
-                Debug.Log("종첨 도착");
+                //Debug.Log("종점 도착");
                 Arrive();
                 return;
             }
-
-            Debug.Log("다음 타겟 설정: 1");
-            wayPointIndex++;
-            target = WayPoints.points[wayPointIndex];
             
+            wayPointIndex++;            
+            target = WayPoints.points[wayPointIndex];
         }
 
         //종점 도착

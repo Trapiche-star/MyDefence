@@ -1,4 +1,3 @@
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 namespace MyDefence
@@ -43,6 +42,13 @@ namespace MyDefence
         #endregion
 
         #region Unity Event Method
+        private void Start()
+        {
+            //초기화
+            IsGameOver = false;
+            IsLevelClear = false;
+        }
+
         private void Update()
         {
             if (IsGameOver)
@@ -73,12 +79,6 @@ namespace MyDefence
         #endregion
 
         #region Custom Method
-        private void Start()
-        {            
-            IsGameOver = false;
-            IsLevelClear = false;            
-        }
-
         //게임오버 처리
         private void GameOver()
         {
