@@ -1,4 +1,3 @@
-using System.Threading;
 using UnityEngine;
 
 namespace Sample
@@ -11,9 +10,11 @@ namespace Sample
         #region Variables
         //참조
         private Animator animator;
-        //애니메이터 파라미터 변수 값
+
+        //애니메이션 파라미터 변수 값
         private int flame = 0;
 
+        //랜덤 애니메이션 타이머
         [SerializeField]
         private float animTimer = 1f;
         private float countdown = 0f;
@@ -31,20 +32,18 @@ namespace Sample
 
         private void Update()
         {
-            //타이머  1번씩 랜덤 애니메이션 
+            //타이머 - 1초에 1번씩 랜덤 애니메시션(1,2,3번중 하나 플레이)
             countdown += Time.deltaTime;
-            if(countdown > animTimer)
+            if (countdown >= animTimer)
             {
-                //
+                //타이머 기능 - 램덤 애니 플레이 (1,2,3)
                 flame = Random.Range(1, 4);
                 animator.SetInteger("Flame", flame);
 
-                    countdown = 0f;
+                //타이머 초기화
+                countdown = 0f;
             }
         }
         #endregion
-
     }
-
 }
-
